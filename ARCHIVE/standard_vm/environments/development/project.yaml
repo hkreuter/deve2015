@@ -1,8 +1,6 @@
 # development project.yaml
 ---
-example::path: "/tmp/example_project_dev.txt"
-example::path_extended: "/tmp/extended_project_dev.txt"
-example::content: "project_dev"
+#
 # --------------
 # composer
 # --------------

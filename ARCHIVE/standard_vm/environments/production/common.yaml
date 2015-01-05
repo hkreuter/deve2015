@@ -1,3 +1,4 @@
+# production common.yaml
 # ---
 # executables path
 generic::execpath: "/usr/local/bin/:/bin/:/usr/bin/:"
@@ -64,7 +65,7 @@ composer::run_install: "no"
 composer::run_update:  "no"
 #
 # --------------
-# composer
+# symfony
 # --------------
 # if bindir is something fancy, you might need to care about PATH env variable
 symfony::bindir:         "/usr/local/bin"
