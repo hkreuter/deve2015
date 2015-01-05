@@ -1,0 +1,6 @@
+# development private.yaml
+---
+example::path: "/tmp/example_private_dev.txt"
+example::path_extended: "/tmp/extended_private_dev.txt"
+example::content: "private_dev"
+#

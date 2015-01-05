@@ -1,0 +1,34 @@
+<% @vhosts = @apache2_vhosts %>
+
+<% @vhosts.each do |key, value| %>
+
+  <VirtualHost <%= key %><% if value["port"] %>:<%= value["port"] %><% end %> >
+        <% if value["serveradmin"] %>ServerAdmin <%= value["serveradmin"] %><% end %>
+        <% if value["servername"] %>ServerName <%= value["servername"] %><% end %>
+        <% if value["serveralias"] %>ServerAlias <%= value["serveralias"] %><% end %>
+        <% if value["docroot"] %>DocumentRoot <%= value["docroot"] %><% end %>
+        <% if value["dirindex"] %>DirectoryIndex <%= value["dirindex"] %><% end %>
+
+        <Directory <%= value["docroot"] %>>
+            <% if value["docroot_directory_options"] %>
+              <%= value["docroot_directory_options"] %>
+            <% end %>
+        </Directory>
+
+        <% if value["directory_options"] %><%= value["directory_options"] %><% end %>
+
+        <% if value["scriptalias"] %>ScriptAlias <%= value["scriptalias"] %><% end %>
+
+        <% if value["errorlog"] %>ErrorLog <%= value["errorlog"] %><% end %>
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        <% if value["loglevel"] %>LogLevel <%= value["loglevel"] %><% end %>
+
+        <% if value["accesslog"] %>CustomLog <%= value["accesslog"] %><% end %>
+
+        <% if value["alias"] %>Alias <%= value["alias"] %><% end %>
+
+    </VirtualHost>
+
+<% end %>
