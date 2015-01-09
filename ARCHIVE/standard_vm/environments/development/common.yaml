@@ -40,7 +40,7 @@ php::mysql:     "yes"
 php::curl:      "yes"
 # -----
 # repositories for php and apache
-#sources::apache2php::ppasigningkey: "E5267A6C"
+sources::apache2php::ppasigningkey: "E5267A6C"
 sources::apache2php::pparepository: "ppa:ondrej/php5-oldstable/ppa"
 #sources::apache2php::pparepository: "ppa:ondrej/php5/ppa"
 #
@@ -89,7 +89,9 @@ apache2::modules::install::mod_rewrite: "yes"
 apache2::modules::install::mod_actions: "yes"
 #
 #
-apache2::httpd_conf::content: " ServerName localhost "
+apache2::httpd_conf::content: ""
+#
+# for apache 2.4, remove the NameVirtualHost directive, otherwie you get a wrning when (re-)starting apache service.
 #
 apache2::ports_conf::content: "# If you just change the port or add more ports here, you will likely also\n
                                \t\t# have to change the VirtualHost statement in\n
@@ -97,6 +99,8 @@ apache2::ports_conf::content: "# If you just change the port or add more ports h
                                \t\t# This is also true if you have upgraded from before 2.2.9-3 (i.e. from\n
                                \t\t# Debian etch). See /usr/share/doc/apache2.2-common/NEWS.Debian.gz and\n
                                \t\t# README.Debian.gz\n####
+
+                               \t\tServerName localhost\n
 
                                \t\tNameVirtualHost 192.168.10.10\n
                                \t\tListen 80\n
@@ -130,7 +134,6 @@ apache2::vhosts:
                                 \t\t AllowOverride All \n
                                 \t\t Order allow,deny \n
                                 \t\t allow from all\n"
-
     directory_options: "   <Directory /> \n
                        \t\t  Options FollowSymLinks \n
                        \t\t  AllowOverride All \n

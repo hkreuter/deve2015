@@ -3,15 +3,15 @@ Example: my standard vm
 INSTALLATION HOWTO:
 
 - MYDIR
-  - deve2015
-  - PROJECTNAME
-    - web
-    - vmconfig
-      - config
-      - environments
-      - modules
-        Vagrantfile
-    - ... other stuff
+ - deve2015
+ - PROJECTNAME
+   - web
+   - vmconfig
+     - config
+     - environments
+     - modules
+       Vagrantfile
+   - ... other stuff
 
 - clone deve2015 into current directory
    git clone https://github.com/hkreuter/deve2015.git
