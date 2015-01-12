@@ -1,0 +1,59 @@
+VAGRANTFILE_API_VERSION = "2"
+VAGRANT_BASEBOX         = "hashicorp/precise32"
+VBOX_NAME               = "HR_BASEBOX_2015"
+VBOX_HOSTNAME           = "thebasebox"
+
+# guest ip adress
+VBOX_IP = "192.168.66.10"
+
+# box memory in MB
+VBOX_MEMORY = "1024"
+
+# box cpu capacity in percent
+VBOX_CPU_CAPACITY = "50"
+
+# number of cpus
+VBOX_CPU_CNT = "2"
+
+# start vm configuration
+Vagrant.configure( VAGRANTFILE_API_VERSION ) do |config|
+
+    # minimum required vagrant version
+    Vagrant.require_version ">= 1.6.5"
+
+    # box configuration
+    config.vm.box               = VAGRANT_BASEBOX
+
+    #config.vm.box_check_update = true
+    config.vm.box_check_update  = false
+    config.vm.hostname          = VBOX_HOSTNAME
+    config.vm.post_up_message   = "Welcome, Deve L. Oper!"
+    config.vm.network "private_network", ip: VBOX_IP
+
+      #---------------------------------------------------------
+      # virtual box guest additions, handled by vagrant-vbguest plugin
+      #---------------------------------------------------------
+      # we will try to autodetect this path.
+      # However, if we cannot or you have a special one you may pass it like:
+      # config.vbguest.iso_path = "#{ENV['HOME']}/Downloads/VBoxGuestAdditions.iso"
+      # or
+      # config.vbguest.iso_path = "http://company.server/VirtualBox/%{version}/VBoxGuestAdditions.iso"
+
+      # set auto_update to false, if you do NOT want to check the correct
+      # additions version when booting this machine
+      config.vbguest.auto_update = true
+
+      # do NOT download the iso file from a webserver
+      config.vbguest.no_remote = true
+
+    # customize your virtualbox vm
+    config.vm.provider "virtualbox" do |vm|
+        vm.customize ["modifyvm", :id, "--cpuexecutioncap", VBOX_CPU_CAPACITY]
+        vm.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+        vm.memory = VBOX_MEMORY
+        vm.gui    = false
+        vm.name   = VBOX_NAME
+        vm.cpus   = VBOX_CPU_CNT
+    end
+
+end

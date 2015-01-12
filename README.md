@@ -4,7 +4,7 @@ deve2015
 Development environment - VM with vagrant, puppet and hiera
 
 Used versions:
-- vagrant 1.6.5
+- vagrant 1.7.2
 - puppet  3.7.3
 - VirtualBox 4.3.20
 - Virtual machine base box is a slightly modified version of hashicorp/precise32,
@@ -17,3 +17,5 @@ Vagrant plugins:
   https://github.com/smdahlen/vagrant-hostmanager
 
 NOTE: composer not yet tested with php 5.3, might not work
+
+
