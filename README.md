@@ -18,4 +18,5 @@ Vagrant plugins:
 
 NOTE: composer not yet tested with php 5.3, might not work
 
+More info can be found at http://php.blogaboutwhatever.com/2015/01/new-vagrant-basebox/
 
