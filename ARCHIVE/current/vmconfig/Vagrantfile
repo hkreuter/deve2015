@@ -7,7 +7,7 @@ VAGRANT_BASEBOX         = "HR_BASEBOX_2015"
 VBOX_NAME               = "HR_JSGAMES_2015"
 VBOX_HOSTNAME           = "thebox"
 VBOX_PROJECT_DIR        = "/var/www/theproject"
-VBOX_SYNC_FOLDER        = "../../../../jsgames/"
+VBOX_SYNC_FOLDER        = "/Users/heike/Development/PROJECTS/JS2015"
 
 # guest ip adress
 VBOX_IP = "192.168.10.10"
