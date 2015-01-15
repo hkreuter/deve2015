@@ -4,10 +4,12 @@
 
 VAGRANTFILE_API_VERSION = "2"
 VAGRANT_BASEBOX         = "HR_BASEBOX_2015"
-VBOX_NAME               = "HR_JSGAMES_2015"
+VBOX_NAME               = "HR_PLAYGROUND_2015"
 VBOX_HOSTNAME           = "thebox"
-VBOX_PROJECT_DIR        = "/var/www/theproject"
-VBOX_SYNC_FOLDER        = "/Users/heike/Development/PROJECTS/JS2015"
+VBOX_PROJECT_DIR_A      = "/var/www/theproject"
+VBOX_PROJECT_DIR_B      = "/var/www/theenv"
+VBOX_SYNC_FOLDER_A      = "/Users/heike/Development/PROJECTS/PROJ2015/playground"
+VBOX_SYNC_FOLDER_B      = "/Users/heike/Development/PROJECTS/PROJ2015/deve2015"
 
 # guest ip adress
 VBOX_IP = "192.168.10.10"
@@ -83,9 +85,13 @@ Vagrant.configure( VAGRANTFILE_API_VERSION ) do |config|
   #---------------------------------------------------------
   # path to folder on the host that's synced to the guest
   #---------------------------------------------------------
-  config.vm.synced_folder VBOX_SYNC_FOLDER, VBOX_PROJECT_DIR,
+  config.vm.synced_folder VBOX_SYNC_FOLDER_A, VBOX_PROJECT_DIR_A,
                              owner: "vagrant", group: "www-data",
-                             mount_options: ["dmode=777,fmode=777"]
+                             mount_options: ["dmode=777,fmode=777"], type: "nfs"
+
+  config.vm.synced_folder VBOX_SYNC_FOLDER_B, VBOX_PROJECT_DIR_B,
+                              owner: "vagrant", group: "www-data",
+                              mount_options: ["dmode=777,fmode=777"], type: "nfs"
 
   #---------------------------------------------------------
   # provisioning with puppet
