@@ -27,7 +27,7 @@ class php5::memcached {
     exec { 'php5::modules::memcached':
       command   => 'sudo pecl install memcached',
       path      => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
-      require   => [Package['php5'], Class['sources::pear']]
+      require   => [Package['php5'], Class['pear::base']]
     }
   }
 

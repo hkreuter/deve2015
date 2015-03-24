@@ -29,7 +29,8 @@ class sources::apache2php {
   if ('' != $signingkey ) {
     exec { 'sources::apache2php::add-signing-key':
       command => "sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $signingkey",
-      path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:')
+      path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
+      require => Class['apt-get-install::base']
     }
   }
 
@@ -38,7 +39,8 @@ class sources::apache2php {
     exec { 'sources::apache2php::add-ppa':
       command => "sudo add-apt-repository -y $ppa",
       path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
-      notify  => Exec['apt-get-update::base::update']
+      notify  => Exec['apt-get-update::base::update'],
+      require => Class['apt-get-install::base']
     }
   }
 

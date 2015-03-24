@@ -35,6 +35,7 @@ class mysql::configure {
   exec { "set-mysql-password":
     command => "mysqladmin -uroot password root",
     path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
-    unless  => "mysqladmin -uroot -proot status"
+    unless  => "mysqladmin -uroot -proot status",
+    require => Class['mysql::base']
   }
 }

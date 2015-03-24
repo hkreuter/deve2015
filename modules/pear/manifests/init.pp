@@ -1,6 +1,6 @@
-# == Class: curl::base
+# == Class: pear
 #
-# install curl
+# install pear
 #
 # === Parameters
 #
@@ -21,13 +21,8 @@
 # Copyright 2014-2015 H.R., unless otherwise noted.
 #
 
-class curl::base {
+class pear {
 
-  contain apt-get-update
-
-  package { 'curl':
-    ensure  => 'latest',
-    require => Exec['apt-get-update::base::update']
-  }
+  contain pear::base
 
 }

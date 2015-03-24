@@ -26,7 +26,7 @@ class php5::xdebug {
   exec { 'php5::xdebug::uninstall-xdebug':
     command   => 'sudo pecl uninstall xdebug',
     path      => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
-    require   => [Package['php5'],Package['php5-dev']],
+    require   => [Package['php5'],Package['php5-dev'],Class['pear::base']],
     notify    => Class['php5::configure']
   }
 
@@ -37,7 +37,7 @@ class php5::xdebug {
       path      => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
       require   => [Package['php5'],
         Package['php5-dev'],
-        Class['sources::pear'],
+        Class['pear::base'],
         Exec['php5::xdebug::uninstall-xdebug']]
     }
 

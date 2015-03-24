@@ -24,20 +24,23 @@
 class mysql::base {
 
   package { 'mysql-client-core-5.5':
-    ensure  => latest
+    ensure  => latest,
+    require => Class['apt-get-update::base']
   }
 
   package { 'mysql-common':
-    ensure  => latest
+    ensure  => latest,
+    require => Class['apt-get-update::base']
   }
 
   package { 'mysql-server-core':
-    ensure  => latest
+    ensure  => latest,
+    require => Class['apt-get-update::base']
   }
 
   package { 'mysql-server':
     ensure  => latest,
-    require => [Package['mysql-common'],Package['mysql-server-core']]
+    require => [Class['apt-get-update::base'],Package['mysql-common'],Package['mysql-server-core']]
   }
 
 }

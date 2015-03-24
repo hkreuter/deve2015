@@ -23,11 +23,11 @@
 
 class sources {
 
+  #contain pear
   contain sources::apache2php
-  contain sources::pear
 
-  Class['apt-get-install'] ->
-  Class['sources']         ->
-  Class['apt-get-update']
+#  Class['apt-get-install'] ->
+#  Class['sources']         ->
+#  Class['apt-get-update']
 
 }

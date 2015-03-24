@@ -1,4 +1,4 @@
-# == Class: sources::pear
+# == Class: pear::base
 #
 # install php-pear
 #
@@ -21,27 +21,33 @@
 # Copyright 2014-2015 H.R., unless otherwise noted.
 #
 
-class sources::pear {
+class pear::base {
 
-  exec { "sources::pear::install":
-    command => 'sudo apt-get -y install php-pear',
+  exec { "pear::base::aptup":
+    command => "sudo apt-get update -y",
     path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
-    notify  => Exec['sources::pear::auto_discover']
+    notify  => Exec['pear::base::install'],
   }
 
-  exec { 'sources::pear::auto_discover':
+  exec { "pear::base::install":
+    command => 'sudo apt-get -y --fix-missing install php-pear',
+    path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
+    notify  => Exec['pear::base::auto_discover']
+  }
+
+  exec { 'pear::base::auto_discover':
     command => 'sudo pear config-set auto_discover 1',
     path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
-    notify  => Exec['sources::pear::upgrade']
+    notify  => Exec['pear::base::upgrade']
   }
 
-  exec { 'sources::pear::upgrade':
+  exec { 'pear::base::upgrade':
     command => 'sudo pear upgrade',
     path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
-    notify  => Exec['sources::pear::channels']
+    notify  => Exec['pear::base::channels']
   }
 
-  exec { 'sources::pear::channels':
+  exec { 'pear::base::channels':
     command => 'sudo pear update-channels',
     path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:')
   }

@@ -25,7 +25,6 @@ class apt-get-update::base {
 
   exec { "apt-get-update::base::update":
     command     => "sudo apt-get update -y",
-    path        => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
-    refreshonly => true
+    path        => hiera(generic::execpath, '/usr/local/bin/:/bin/:')
   }
 }
