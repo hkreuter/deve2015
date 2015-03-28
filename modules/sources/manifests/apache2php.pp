@@ -39,7 +39,6 @@ class sources::apache2php {
     exec { 'sources::apache2php::add-ppa':
       command => "sudo add-apt-repository -y $ppa",
       path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
-      notify  => Exec['apt-get-update::base::update'],
       require => Class['apt-get-install::base']
     }
   }

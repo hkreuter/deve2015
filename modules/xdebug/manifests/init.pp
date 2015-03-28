@@ -1,6 +1,6 @@
-# == Class: php5::modules
+# == Class: xdebug
 #
-# Install php5 modules
+# install and configure xdebug
 #
 # === Parameters
 #
@@ -21,9 +21,8 @@
 # Copyright 2014-2015 H.R., unless otherwise noted.
 #
 
-class php5::modules {
-  contain php5::memcached
-  contain php5::mcrypt
-  contain php5::mysql
-  contain php5::curl
+class xdebug {
+
+  contain xdebug::base
+
 }

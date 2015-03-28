@@ -28,7 +28,8 @@ class apt-get-install::base {
   if ('' != $to_be_installed) {
     exec { "apt-get-install::base::install":
       command => "sudo apt-get -y install $to_be_installed",
-      path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:')
+      path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
+      require => Exec['apt-get-update::base::update']
     }
   }
 

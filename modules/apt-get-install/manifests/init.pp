@@ -22,5 +22,6 @@
 #
 
 class apt-get-install {
+  contain apt-get-update
   contain apt-get-install::base
 }

@@ -44,6 +44,7 @@ class php5 {
   contain php5::modules
   contain php5::configure
 
+  #Class['pear']           ->
   Class['sources']        ->
   Class['php5::base']     ->
   Class['php5::modules']  ->
