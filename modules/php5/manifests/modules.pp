@@ -26,4 +26,5 @@ class php5::modules {
   contain php5::mcrypt
   contain php5::mysql
   contain php5::curl
+  contain php5::xdebug
 }

@@ -1,0 +1,10 @@
+# development project.yaml
+---
+#
+# --------------
+# composer
+# --------------
+composer::bindir:      "/usr/local/bin"
+composer::filename:    "composer"
+composer::run_install: "no"
+composer::run_update:  "no"

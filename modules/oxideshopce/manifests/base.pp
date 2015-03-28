@@ -40,8 +40,10 @@ class oxideshopce::base {
     }
   }
 
-  file { "$unzipdir":
-    ensure  => absent,
+  exec { 'oxideshop::base::remove':
+    command => "test -d $basedir/$unzipdir && sudo rm -r $unzipdir || echo 'nothing to be done'",
+    path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
+    cwd     => "$basedir",
     notify  => Exec['oxideshopce::base::download']
   }
 
@@ -49,13 +51,13 @@ class oxideshopce::base {
     command => "sudo curl -sSL $url --output $basedir/$filename",
     path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
     creates => "$basedir/$filename",
-    require => [Package['curl'], File[$unzipdir]]
+    require => [Package['curl'], Exec['oxideshop::base::remove']]
   }
 
   exec { 'oxideshopce::base::unzip':
-    command => "sudo unzip -d $unzipdir $basedir/$filename",
+    command => "sudo unzip -d $basedir/$unzipdir $basedir/$filename",
     path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
-    creates => "$unzipdir",
+    creates => "$basedir/$unzipdir",
     require => [Exec['oxideshopce::base::download'],
                 Exec['apt-get-install::base::install']]
   }
