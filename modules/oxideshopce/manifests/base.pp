@@ -35,8 +35,7 @@ class oxideshopce::base {
       owner   => 'root',
       group   => 'root',
       mode    => 0775,
-      recurse => true,
-      notify  => File["$unzipdir"]
+      recurse => true
     }
   }
 

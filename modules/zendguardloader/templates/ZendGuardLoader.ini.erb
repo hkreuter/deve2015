@@ -1,0 +1,16 @@
+zend_extension=<%= scope.function_hiera(["zendloader::lib_dir"]) %>/<%= scope.function_hiera(["zendloader::filename"]) %>
+
+; Enables loading encoded scripts. The default value is On
+zend_loader.enable=<%= scope.function_hiera(["zendloader::enable"]) %>
+
+;Disable license checks (for performance reasons)
+zend_loader.disable_licensing=<%= scope.function_hiera(["zendloader::disable_licensing"]) %>
+
+;The Obfuscation level supported by Zend Guard Loader.
+;The levels are detailed in the official Zend Guard Documentation.
+;0 - no obfuscation is enabled
+zend_loader.obfuscation_level_support=<%= scope.function_hiera(["zendloader::obfuscation_level_support"]) %>
+
+;Path to where licensed Zend products should look for the product license.
+;For more information on how to create a license file, see the Zend Guard User Guide
+zend_loader.license_path=<%= scope.function_hiera(["zendloader::license_path"]) %>
