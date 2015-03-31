@@ -24,15 +24,24 @@
 
 class zendguardloader::configure {
 
-  $path = hiera(zendloader::lib_dir)
+  $zlpath   = hiera(zendloader::lib_dir)
+  $zlname   = hiera(zendloader::inifilename, 'ZendGuardLoader.ini')
+  $phpconfd = hiera(zendloader::phpconfdir)
+  $linkto   = hiera(zendloader::inilinkto)
 
   file { 'zendguardloader::configure::zendloader_ini':
     ensure  => present,
-    path    => "$path/ZendGuardLoader.ini",
+    path    => "$zlpath/$zlname",
     owner   => 'root',
     group   => 'root',
     mode    => '0775',
     content => template("zendguardloader/ZendGuardLoader.ini.erb")
+  }
+
+  exec { 'zendguardloader::configure::confd_link':
+    command  => "sudo ln -sf $zlpath/$zlname $phpconfd/$linkto",
+    path     => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
+    require  => [Package['php5'],File['zendguardloader::configure::zendloader_ini']]
   }
 
 }

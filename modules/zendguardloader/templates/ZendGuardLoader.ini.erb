@@ -1,4 +1,4 @@
-zend_extension=<%= scope.function_hiera(["zendloader::lib_dir"]) %>/<%= scope.function_hiera(["zendloader::filename"]) %>
+zend_extension=<%= scope.function_hiera(["zendloader::basedir"]) %>/<%= scope.function_hiera(["zendloader::filename"]) %>
 
 ; Enables loading encoded scripts. The default value is On
 zend_loader.enable=<%= scope.function_hiera(["zendloader::enable"]) %>
