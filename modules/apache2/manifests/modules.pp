@@ -35,6 +35,12 @@ class apache2::modules {
     $cmdact = "sudo a2dismod actions"
   }
 
+  if ( 'yes' == hiera(apache2::modules::install::mod_expire, 'no') ) {
+    $cmdexp = "sudo a2enmod expires"
+  } else {
+    $cmdexp = "sudo a2dismod expires"
+  }
+
   exec { "apache2::modules::mod_rewrite":
     command => $cmdrew,
     path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
@@ -44,6 +50,13 @@ class apache2::modules {
 
   exec { "apache2::modules::mod_actions":
     command => $cmdact,
+    path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
+    require => Service['apache2'],
+    notify  => Exec['apache2::restart-service']
+  }
+
+  exec { "apache2::modules::mod_expire":
+    command => $cmdexp,
     path    => hiera(generic::execpath, '/usr/local/bin/:/bin/:'),
     require => Service['apache2'],
     notify  => Exec['apache2::restart-service']
